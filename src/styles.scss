@@ -1,0 +1,129 @@
+/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: OpenSans-Light;
+    src: url('assets/font/OpenSans-Light.ttf');
+}
+@font-face {
+    font-family: OpenSans-LightItalic;
+    src: url('assets/font/OpenSans-LightItalic.ttf');
+}
+@font-face {
+    font-family: OpenSans-SemiBoldItalic;
+    src: url('assets/font/OpenSans-SemiBoldItalic.ttf');
+}
+@font-face {
+    font-family: OpenSans-Regular;
+    src: url('assets/font/OpenSans-Regular.ttf');
+}
+@font-face {
+    font-family: OpenSans-Bold;
+    src: url('assets/font/OpenSans-Bold.ttf');
+}
+
+$blue: rgba(28,30,69, 0.98);
+$darkblue: #171941;
+$gray: rgba(255,255,255,.5);
+$hotpink: #fd5d93;
+$pink: rgb(214,0,89);
+$violet: #a42b85;
+$white: #fff;
+$black: rgba(0,0,0,.1);
+$blueSecond: #2b3553;
+$seaBlue: #00f2c3;
+$lightBlue: #0098f0;
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: OpenSans-Regular;
+}
+
+.btn-gold {
+    color: #bd934f;
+    &:hover {
+        color: #fbc860;
+    }
+}
+
+.btn, 
+input {
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.outline-gold {
+    width: 200px;
+    border: 1px solid #bd934f;
+    border-radius: 0;
+    letter-spacing: 1px;
+    color: #bd934f;
+    &:hover {
+        border: 1px solid #fbc860;
+        color: #fbc860;
+    }
+    &:focus {
+        box-shadow: none;
+    }
+}
+
+.alert-error {
+    color: red;
+}
+
+#results-form-last,
+#results-form-urban,
+#couples-table,
+#adj-table,
+#competitions-table, 
+#urban-competition-table,
+#urban-team-table {
+
+    .ngx-pagination {
+        display: flex;
+        justify-content: center;
+    }
+
+    .ngx-pagination li a {
+        font-size: 12px;
+    }
+
+    .ngx-pagination .current {
+        background: linear-gradient(to bottom left,$hotpink,$pink,$violet); 
+        border-radius: 5px;
+    }
+
+    .ngx-pagination .disabled {
+        font-size: 12px;
+        color: $gray;
+    }
+
+    .ngx-pagination li.pagination-next a,
+    .ngx-pagination li.pagination-previous a {
+        background-color: transparent;
+        color: $white;
+    }
+
+    .ngx-pagination a:hover, 
+    .ngx-pagination button:hover {
+        background: transparent;
+    }
+
+    .ngx-pagination li:focus,
+    .ngx-pagination li:focus,
+    .ngx-pagination li a:focus,
+    .ngx-pagination li a:focus {
+        outline: 0;
+        border: none;
+    }
+}
+
+#results-form-urban,
+#urban-competition-table,
+#urban-team-table {
+    .ngx-pagination .current {
+        background: linear-gradient(to bottom left,$seaBlue, $lightBlue, $lightBlue);
+        border-radius: 5px;
+    }
+}

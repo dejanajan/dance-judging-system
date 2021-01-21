@@ -1,0 +1,190 @@
+$seaBlue: #00f2c3;
+$lightBlue: #0098f0;
+$pink: rgb(214,0,89);
+$violet: #a42b85;
+$blue: rgba(28,30,69, 0.98);
+$blueSec:  #171941;
+$blueth: #2b3553;
+$gray: rgba(255,255,255,.5);
+$white: #fff;
+$black: rgba(0,0,0,.1);
+
+#sidebar {
+    padding: 20px 10px;
+    height: 100%;
+    width: 140px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: $blue;
+    overflow: hidden;
+    padding-top: 20px;
+
+    .img-wrapper {
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 80px;
+            width: 100%;
+        }
+    }
+
+    .log {
+        small {
+            font-size: 12px;
+        }
+        h2{
+            font-size: 22px;
+        }
+        text-align: center;
+        color: #fff;
+    }
+    .sidebar-tabs {
+        #v-pills-tab {
+            align-items: center;
+        }
+        svg {
+            margin: 0 auto;
+            display: block;
+            font-size: 35px;
+            color: $gray;
+        }
+        a.nav-link {
+            margin-bottom: 10px;
+            width: 100px;
+            display: block;
+            font-size: 70%;
+            text-align: center;
+            color: $gray;
+            @media(max-width: 567px) {
+                padding: 10px 5px;
+                width: 75px;
+                font-size: 65%;
+            }
+        }
+        .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+            background: linear-gradient(to bottom left,$seaBlue,$lightBlue,$seaBlue);
+            color: $white;
+            svg {
+                color: $white;  
+            }
+        }
+    }
+    .sign-out {
+        text-align: center;
+        font-size: 18px;
+        transform: translateY(220px);
+        a {
+            color: $gray;
+            &:hover {
+                color: $seaBlue;
+            }
+        }
+        @media(max-width: 567px) {
+            font-size: 14px;
+            transform: translateY(50px);
+        }
+    }
+    @media(max-width: 567px) {
+        width: 100px;
+    }
+}
+
+.wrapper {
+    background: $blueSec;
+}
+
+.navbar {
+    margin-left: 140px;
+    background: $seaBlue;
+    .navbar-brand {
+        color: $white;
+    }
+    @media(max-width: 567px) {
+        margin-left: 100px;
+        .navbar-brand {
+            font-size: 16px;
+        }
+    }
+}
+
+main {
+    margin-left: 140px;
+    padding: 65px;
+    height: 100vh;
+    color: $white;
+    .main-wrap {        
+        padding: 20px;
+        background:$blue;
+        border: 1px solid $seaBlue;
+        box-shadow: 0 1px 20px 0 $black;
+        .card {
+            position: relative;
+            background: transparent;
+            border: none;
+            .card-header {
+                position: absolute;
+                top: -20px;
+                left: -20px;
+                width: 350px;
+                background: linear-gradient(to bottom left,$lightBlue,$seaBlue,$lightBlue);
+                border-radius: 0 0 80px 0;
+                h1 {
+                    margin: 0;
+                    font-size: 20px;
+                }
+            }
+            .card-body {
+                padding-top: 80px;
+                .form-group {
+                    label {
+                        font-size: 12px;
+                    }
+                    input, 
+                    select {
+                        color: $gray;
+                        border: 1px solid $blueth;
+                        background-color: transparent;
+                        font-size: 12px;
+                        &:focus {
+                            box-shadow: none;
+                            border-color: $seaBlue;
+                            color: $seaBlue;
+                        }
+                        &:disabled {
+                            color: #9a9a9a;
+                            opacity: .5;
+                            cursor: not-allowed; 
+                        }
+                    }
+                }
+                .button {
+                    display: flex;
+                    justify-content: flex-end;
+                    .btn {
+                        padding: 10px 35px;
+                        font-size: 14px;
+                        background: linear-gradient(to bottom left,$lightBlue,$seaBlue,$lightBlue);
+                        border: none;
+                    }
+                    .btn-calculate {
+                        color: $white;
+                        background: linear-gradient(to bottom left,$seaBlue, $lightBlue, $lightBlue);
+                    }
+                }
+            }
+        }
+    }
+    @media(max-width: 768px) {
+        padding: 45px;
+        height: auto;
+    }
+
+    @media(max-width: 567px) {
+        min-height: 100vh;
+        height: auto;
+        padding: 10px;
+        margin-left: 100px;
+    }
+}

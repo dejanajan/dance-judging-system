@@ -1,0 +1,88 @@
+$pink: rgb(214,0,89);
+$hotpink: #fd5d93;
+$violet: #a42b85;
+$lightseagreen: #00f2c3;
+$seaGreen: #0098f0;
+$orange: #ec250d;
+$gold:  #bd934f;
+$dimGold: rgba(189, 147, 79, 0.2);
+$lightGold: #fbc860;
+$white: #fff;
+$ghostGray: rgba(255,255,255,.5);
+$darkGray: rgba(27,24,20,0.92);
+$background: radial-gradient(ellipse at bottom,#595b5a 30%,#0a0a0a 80%);
+
+.wrapper {
+    background: url('./../../assets/img/background.jpg');
+}
+
+.navbar {
+    background: $darkGray;
+    .navbar-brand {
+        color: #fff;
+    }
+    .nav-logout {
+      margin-right: 30px;
+      button {
+        color: $gold;
+        &:hover {
+          color: $lightGold;
+        }
+      }      
+    }
+}
+
+main {
+    padding: 65px;
+    height: 100vh;
+    color: #fff;
+    .main-wrap {    
+        max-width: 1000px;
+        width: 100%;  
+        margin: 0 auto;  
+        background-color: rgba(27,24,20,0.92);
+        border: 1px solid #363430;
+        box-shadow: 0px 2px 19px -2px rgba(0,0,0,0.54);
+        .card {
+            background: transparent;
+            border: none;
+            .card-body {
+                margin: 50px 80px 30px 80px;
+
+                table {
+                  margin-bottom: 50px;
+                }
+              
+                .table th {
+                  border-top: none;;
+                  border-bottom: 2px solid $lightGold;
+                  color: $lightGold;
+                  text-align: center;
+                }
+              
+                .table td {
+                  border-bottom: none;
+                  color: $gold;
+                  text-align: center;
+                  border-bottom: 1px solid $dimGold;
+                  
+                  button {
+                    padding: 0;
+                    vertical-align: top;
+                  }
+                }
+              
+                .button-next {
+                  float: right;
+                }
+
+                @media(max-width: 768px){
+                  margin: 40px 20px;
+                }
+            }
+        }
+    }
+    @media(max-width: 768px){
+      padding: 35px;
+    }
+}

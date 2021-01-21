@@ -1,0 +1,55 @@
+<div class="background">
+    <div class="wrapper">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+            <img src="../assets/img/world.png" alt="world" class="world">
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <img src="../assets/img/wdsf-lg.png" alt="logo" class="logo">
+          </div>
+          <div class="col-sm-12 col-md-8 align-center">
+            <img src="../assets/img/dancesport.png" alt="dancesport" class="dancesport">
+          </div>
+          <div class="col-sm-12 col-md-12">
+            <img src="../assets/img/federation.png" alt="federation" class="federation">
+          </div>
+          <div class="col-sm-12 col-md-12">
+            <h1 class="judging">Judging System 3.0</h1>
+          </div>
+        </div>
+        <div  class="row">
+          <div class="col-sm-12 col-md-12">    
+            <div class="buttons">
+              <!-- <a class="btn outline-gold" [routerLink]="'/login'" routerLinkActive="activebutton">LOGIN</a> -->
+              <a class="btn outline-gold" (click)="showLogin()">LOGIN</a>
+              <a type="button" class="btn outline-gold" data-toggle="modal" data-target="#instructionModal">INSTRUCTION</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-login [showHide]="showAppLog"></app-login>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="instructionModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="text-center">Instruction</h1>
+        </div>
+        <div class="modal-body">
+          <p class="text-center mt-3 mb-3">To log in to the system, click the <b>Login</b> button.<br/>
+            Enter your username in the <b>Username</b> field, and enter your password in the <b>Password</b> field.
+            After logging in to the system, you will be redirected to a page with a list of competitions assigned to you for judging. 
+            When you select a contest, you will be redirected to the entry page. 
+            After filling in the table for entering grades, click the <b>Save</b> button.<br/> 
+            Best of luck!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-gold" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

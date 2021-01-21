@@ -1,0 +1,116 @@
+<div class="card">
+    <div class="card-header">
+        <h1>Insert Competition</h1>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="addCompetitionForm" (ngSubmit)="onSubmitCompetitionForm(addCompetitionForm.value)" autocomplete="off" novalidate id="competitions-table">
+            <div class="form-row">
+                <div class="form-group col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3">
+                    <label for="competition-date">Date</label>
+                    <input formControlName="competitionDate" type="date" class="form-control form-control-sm" id="competition-date">
+                </div>
+                <div class="form-group col-12 col-sm-12 col-md-12 col-lg-8 col-xl-4">
+                    <label for="dance-style">Event</label>
+                    <select formControlName="competitionEvent" class="form-control form-control-sm" id="dance-style">
+                        <option *ngFor="let event of competitionEventList" [value]="event.comp_event_id">{{event.comp_event_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                    <!-- This is dance style -->
+                    <label for="competition-style">Competition Style</label>
+                    <select formControlName="competitionStyle" class="form-control form-control-sm" id="competition-style">
+                        <option *ngFor="let style of danceStyleLaSt" [value]="style.last_dance_style_id">{{style.last_ds_name}}</option>
+                    </select>
+                </div>                               
+                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4 col-xl-2">
+                    <!-- This is dance category -->
+                    <label for="dance-category">Competition Category</label>
+                    <select formControlName="competitionCategory" class="form-control form-control-sm" id="dance-category">
+                        <option *ngFor="let category of danceCategoryLaSt" [value]="category.last_dance_cat_id">{{category.last_dc_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+                    <!-- This is age group -->
+                    <label for="dance-ageGroup">Competition Age Group</label>
+                    <select formControlName="competitionAgeGroup" class="form-control form-control-sm" id="dance-ageGroup">
+                        <option *ngFor="let group of ageGroup" [value]="group.last_age_group_id">{{group.last_age_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                    <label for="competition-round">Number of Round</label>
+                    <select formControlName="competitionRound" class="form-control form-control-sm" id="competition-round">
+                        <option *ngFor="let heat of heats" [value]="heat.heat_id">{{heat.heat_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                    <label for="couples-number">Number of Couples</label>
+                    <input formControlName="competitionNumCouples" type="text" class="form-control form-control-sm" id="couples-number">
+                </div>
+                <div class="form-group col-12 col-sm-12 col-md-4 col-lg-3 col-xl-3">
+                    <label for="adjucator-id">Adjucator ID</label>
+                    <select formControlName="competitionAdjucatorID" class="form-control form-control-sm" id="adjucator-id">
+                        <option *ngFor="let adjId of adjSignId" [value]="adjId.adj_sign_id">{{adjId.adj_sign_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+                    <label for="component">Component</label>
+                    <select formControlName="competitionComponent" class="form-control form-control-sm" id="component">
+                        <option *ngFor="let component of components" [value]="component.component_id">{{component.component_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-12 col-sm-12 col-md-6 col-lg-4 col-xl-3">
+                    <label for="adjucator">Adjucator</label>
+                    <select formControlName="competitionAdjucator" class="form-control form-control-sm" id="adjucator">
+                        <option *ngFor="let adj of adjucators" [value]="adj.user_id">{{adj.name}} {{adj.surname}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="button">
+                <button type="button" class="btn btn-primary preview" (click)="getCompetitions(addCompetitionForm.value); showTable=true">Preview</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            <ng-container *ngIf="showTable">
+                <div class="table-responsive custom-table mb-5">
+                    <table class="table">
+                        <thead class="custom-header">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Event</th>
+                                <th scope="col">Style</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Age Group</th>   
+                                <th scope="col">Round</th>                         
+                                <th scope="col">Adjucator ID</th>
+                                <th scope="col">Component</th>               
+                                <th scope="col">Adjucator</th>  
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let comp of competitions | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index ">
+                                <td>{{i+1}}</td>
+                                <td>{{comp.comp_event_name}}</td>
+                                <td>{{comp.dance_style}}</td>
+                                <td>{{comp.dance_category}}</td>
+                                <td>{{comp.age}}</td>
+                                <td>{{comp.round}}</td>
+                                <td>{{comp.adjucator_sign}}</td>
+                                <td>{{comp.component_shortname}}</td>
+                                <td>{{comp.name}} {{comp.surname}}</td>
+                            </tr>                      
+                        </tbody>
+                    </table>
+                </div>
+                <pagination-controls (pageChange)="page = $event" id="1"
+                    maxSize="5"
+                    directionLinks="true"
+                    autoHide="true"
+                    previousLabel="Previous"
+                    nextLabel="Next"
+                    screenReaderPaginationLabel="Pagination"
+                    screenReaderPageLabel="page"
+                    screenReaderCurrentLabel="You're on page">
+                </pagination-controls>
+            </ng-container> 
+        </form>                                
+    </div>                 
+</div> 

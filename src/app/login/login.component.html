@@ -1,0 +1,40 @@
+<div *ngIf="showHide" class="card">
+    <div class="card-body">
+        <form [formGroup]="loginForm" (ngSubmit)="submitData(loginForm)" autocomplete="off">
+            <div class="form-group mb-5">
+              <label for="username">Username</label>
+              <input type="text" name="username" formControlName="username" class="form-control" id="usename" required>
+
+              <div *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+                <div *ngIf="loginForm.controls['username'].errors.required">
+                  <small id="username-error" class="form-text alert-error">Field is required.</small>
+                </div>
+                <div *ngIf="loginForm.controls['username'].errors.minlength">
+                  <small class="form-text alert-error">Username must be at least 3 characters long.</small>
+                </div>
+                <div *ngIf="loginForm.controls['username'].errors?.pattern">
+                  <small class="form-text alert-error">Username has unallowed characters.</small>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" formControlName="password" class="form-control" id="password">
+
+              <div *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+                <div *ngIf="loginForm.controls['password'].errors.required">
+                  <small id="pwd-error" class="form-text alert-error">Field is required.</small>
+                </div>
+                <div *ngIf="loginForm.controls['password'].errors?.minlength">
+                  <small class="form-text alert-error">Password must be at least 4 characters long.</small>
+                </div>
+              </div>
+            </div>
+            <div class="button">
+                <button type="submit" class="btn btn-gold">Submit</button>
+                <button type="button" class="btn btn-gold" (click)="closeLogin()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,74 @@
+<div class="card">
+    <div class="card-header">
+        <h1>Select Criteria</h1>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="rankingForm" (ngSubmit)="onSubmitRankingForm(rankingForm.value)" autocomplete="off" novalidate id="results-form">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="dance-style">Dance Style</label>
+                    <select class="form-control form-control-sm" id="dance-style" formControlName="danceStyle">
+                        <option *ngFor="let style of danceStyleLaSt" [value]="style.last_dance_style_id">{{style.last_ds_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="dance-ageGroup">Age Group</label>
+                    <select class="form-control form-control-sm" id="dance-ageGroup" formControlName="ageGroup">
+                        <option *ngFor="let group of ageGroup" [value]="group.last_age_group_id">{{group.last_age_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="dance-category">Dance Category</label>
+                    <select class="form-control form-control-sm" id="dance-category" formControlName="danceCategory">
+                        <option *ngFor="let category of danceCategoryLaSt" [value]="category.last_dance_cat_id">{{category.last_dc_name}}</option>
+                    </select>
+                </div>                                   
+                <div class="form-group col-md-3">
+                    <label for="dance-round">Round</label>
+                    <select class="form-control form-control-sm" id="dance-round" formControlName="round">
+                        <option *ngFor="let heat of heats" [value]="heat.heat_id">{{heat.heat_name}}</option>
+                    </select>
+                </div>
+             </div>
+            <div class="button">
+                <button type="submit" class="btn btn-primary" (click)="showTable=true">Search</button>
+            </div> 
+            <ng-container *ngIf="showTable">
+                <div class="table-responsive custom-table mb-5">
+                    <table class="table">
+                        <thead class="custom-header">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Dance Couple ID</th>
+                                <th scope="col">Age Group</th>                         
+                                <th scope="col">Category</th>
+                                <th scope="col">Style</th>
+                                <th scope="col">Score</th>                      
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mark of endScore | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index ">
+                                <td>{{i+1}}</td>
+                                <td>{{mark.couple_id}}</td>
+                                <td>{{mark.last_age_name}}</td>
+                                <td>{{mark.last_dc_name}}</td>
+                                <td>{{mark.last_ds_name}}</td>
+                                <td>{{mark.ranking_end_score}}</td>
+                            </tr>                      
+                        </tbody>
+                    </table>
+                </div>
+                <pagination-controls (pageChange)="page = $event" id="1"
+                    maxSize="5"
+                    directionLinks="true"
+                    autoHide="true"
+                    previousLabel="Previous"
+                    nextLabel="Next"
+                    screenReaderPaginationLabel="Pagination"
+                    screenReaderPageLabel="page"
+                    screenReaderCurrentLabel="You're on page">
+                </pagination-controls>
+            </ng-container>                           
+        </form>
+    </div>                        
+</div>

@@ -1,0 +1,145 @@
+b {
+    color: #bd934f;
+}
+
+.background {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../assets/img/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.wrapper {
+    max-width: 600px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo {
+    width: 200px;
+    float: right;
+}
+
+.world {
+    display: block;
+    width: 150px;
+    margin-left: 180px;
+}
+
+.dancesport {
+    display: block;
+    width: 400px;
+}
+
+.align-center {
+    align-self: center;
+}
+
+.federation {
+    display: block;
+    width: 250px;
+    margin-left: 150px;
+    margin-bottom: 50px;
+}
+
+.judging {
+    margin-left: 250px;
+    margin-bottom: 120px;
+    font-size: 35px;
+    font-family: OpenSans-LightItalic;
+    color: #fff;
+    transform: rotate(-8deg);
+    letter-spacing: 2px;
+}
+
+.buttons {
+    display: table;
+    margin: 0 auto;
+    a:first-of-type {
+        margin-right: 50px;
+    }
+}
+
+.modal-dialog {
+    padding: 20px;
+    max-width: 550px;
+    width: 100%;
+    border-radius: 0;
+    background-color: rgba(27,24,20,0.92);
+    border: 1px solid #363430;
+    box-shadow: 0px 2px 19px -2px rgba(0,0,0,0.54);
+    font-family: OpenSans-Regular;
+}
+
+.modal-content {
+    background-color: rgba(27,24,20,0.92);
+    padding: 30px;
+    border: 1px solid #bd934f;
+    font-size: 14px;
+    color: #fff;
+}
+
+.modal-header {
+    justify-content: center;
+    border-bottom: 1px solid #bd934f;
+}
+
+.modal-footer {
+    border-top: 1px solid #bd934f;
+}
+
+@media screen and (max-width: 576px) {
+    .background {
+        background-position-x: inherit;
+    }
+    .wrapper {
+        width: 350px;
+    }
+    .buttons,
+    .dancesport,
+    .federation,
+    .judging,
+    .logo,
+    .world {
+        margin-left: 0;
+        width: initial;
+    }
+    .logo {
+        margin-bottom: 20px;
+        float: inherit;
+        margin-left: 20px;
+    }
+    .world {
+        margin-left: 30px;
+    }
+    .dancesport {
+        margin-bottom: 20px;
+    }
+    .federation {
+        margin-left: 40px;
+        margin-bottom: 30px;
+    }
+    .judging {
+        margin-left: 80px;
+        margin-bottom: 60px;
+        font-size: 24px;
+        letter-spacing: 1px;
+    }
+    .buttons {
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+       a:first-of-type {
+           margin-right: 0px;
+           margin-bottom: 20px;
+       } 
+    }
+}
+

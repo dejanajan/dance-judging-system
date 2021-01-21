@@ -1,0 +1,302 @@
+<nav class="navbar">
+    <a class="navbar-brand" href="#">
+        <img src="./../../../assets/img/WDSF-logo-simplified.png">
+    </a>
+</nav>
+
+<div class="wrapper" *ngFor="let details of arrChoosenComp; index as i">
+    <main>
+        <form [formGroup]="addTeamMarksForm" (ngSubmit)="onSubmitTeamMarksForm(addTeamMarksForm)" autocomplete="off" novalidate>
+            <div class="head-wrap mb-3">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="box">
+                            <div class="box-content">
+                                <span class="mr-5"><b>{{details.adjucator_sign}}</b></span>
+                                <span>{{details.name}} {{details.surname}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="box">
+                            <div class="box-content">
+                                <span>{{details.urban_ds_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-wrap">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="box-wrapper">
+                            <div class="box">
+                                <small>TEAM ID</small>
+                                <h3 class="team-name" *ngFor="let team_one of teams | slice:0:1; let i=index;">
+                                    {{team_one.team_id}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="info-box-wrapper">
+                            <div class="event-info">
+                                <h2 class="mb-4">{{details.heat_name | uppercase}} ROUND</h2>
+                                <h5 class="mb-2">{{details.comp_event_name}}</h5>
+                                <span>{{details.urban_age_name}}</span> - <span>{{details.urban_dc_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="box-wrapper">
+                            <div class="box">
+                                <small>TEAM ID</small>
+                                <h3 class="team-name" *ngFor="let team_two of teams | slice:1:2; let i=index;">
+                                    {{team_two.team_id}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-4 mt-5">
+                        <button type="submit" class="btn btn-confirm">CONFIRM</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="team-info-wrapper" *ngFor="let team_one of teams | slice:0:1; let i=index;">
+                            <div class="team-info mb-5">
+                                <small>TEAM</small>
+                                <p>{{team_one.team_name}}</p>
+                                <small>DANCE STUDIO</small>
+                                <p>{{team_one.team_studio}}</p>
+                            </div>
+                            <div class="side-wrap-left mb-5">
+                                <p>Blue Side</p>
+                            </div>
+                            <div class="crash">
+                                <button type="button" class="btn btn-secondary crash-btn" (click)="crashLeft($event)">CRASH</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="marks-wrapper">
+                            <div class="first-section">
+                                <div class="form-group">
+                                    <label for="technique" class="text-center">Technique</label>
+                                    <output name="techniqueResult" id="tqResult" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="technique" name="technique" oninput="tqResult.value = technique.value" formControlName="technique">                                
+                                </div>
+                                <div class="form-group">
+                                    <label for="variety" class="text-center">Variety</label>
+                                    <output name="varietyResult" id="vrResult" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="variety" oninput="vrResult.value = variety.value" formControlName="variety">                                
+                                </div>
+                            </div>
+                            <hr class="hr-left">
+                            <hr class="hr-right">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="team-info-wrapper" *ngFor="let team_two of teams | slice:1:2; let i=index;">
+                            <div class="team-info mb-5">
+                                <small>TEAM</small>
+                                <p>{{team_two.team_name}}</p>
+                                <small>DANCE STUDIO</small>
+                                <p>{{team_two.team_studio}}</p>
+                            </div>
+                            <div class="side-wrap-right mb-5">
+                                <p>Red Side</p>
+                            </div>
+                            <div class="crash">
+                                <button type="button" class="btn btn-secondary crash-btn" (click)="crashRight($event)">CRASH</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-around">
+                    <div class="col-md-6">
+                        <div class="marks-wrapper">
+                            <div class="first-section">
+                                <div class="form-group">
+                                    <label for="performativity" class="text-center">Performativity</label>
+                                    <output name="performativityResult" id="pfResult" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="performativity" name="performativity" oninput="pfResult.value = performativity.value" formControlName="performativity">                                
+                                </div>
+                                <div class="form-group">
+                                    <label for="musicality" class="text-center">Musicality</label>
+                                    <output name="musicalityResult" id="msResult" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="musicality" oninput="msResult.value = musicality.value" formControlName="musicality">                                
+                                </div>
+                                <hr class="hr-horizontal">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="marks-wrapper">
+                            <div class="second-section">
+                                <div class="form-group">
+                                    <label for="creativity" class="text-center">Creativity</label>
+                                    <output name="creativityResult" id="crResult" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="creativity" name="creativity" oninput="crResult.value = creativity.value" formControlName="creativity">                                
+                                </div>
+                                <div class="form-group">
+                                    <label for="personality" class="text-center">Personality</label>
+                                    <output name="personalityResult" id="psResult" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="personality" oninput="psResult.value = personality.value" formControlName="personality">                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-wrap-mobile">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-sm-10 col-md-8">
+                        <div class="info-box-wrapper mb-5">
+                            <div class="event-info">
+                                <h2 class="mb-4">{{details.heat_name | uppercase}} ROUND</h2>
+                                <h5 class="mb-2">{{details.comp_event_name}}</h5>
+                                <span>{{details.urban_age_name}}</span> - <span>{{details.urban_dc_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-6 mb-5">
+                        <button type="submit" class="btn btn-confirm">CONFIRM</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-6">
+                        <div class="box-wrapper">
+                            <div class="box">
+                                <small>TEAM ID</small>
+                                <h3 class="team-name" *ngFor="let team_one of teams | slice:0:1; let i=index;">
+                                    {{team_one.team_id}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6">
+                        <div class="box-wrapper">
+                            <div class="box">
+                                <small>TEAM ID</small>
+                                <h3 class="team-name" *ngFor="let team_two of teams | slice:1:2; let i=index;">
+                                    {{team_two.team_id}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 col-sm-6 col-md-6">
+                        <div class="team-info-wrapper" *ngFor="let team_one of teams | slice:0:1; let i=index;">
+                            <div class="team-info mb-5">
+                                <small>TEAM</small>
+                                <p>{{team_one.team_name}}</p>
+                                <small>DANCE STUDIO</small>
+                                <p>{{team_one.team_studio}}</p>
+                            </div>
+                            <div class="side-wrap-left mb-5">
+                                <p>Blue Side</p>
+                            </div>
+                            <div class="crash">
+                                <button type="button" class="btn btn-secondary crash-btn" (click)="crashLeft($event)">CRASH</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 col-sm-6 col-md-6">
+                        <div class="team-info-wrapper" *ngFor="let team_two of teams | slice:1:2; let i=index;">
+                            <div class="team-info mb-5">
+                                <small>TEAM</small>
+                                <p>{{team_two.team_name}}</p>
+                                <small>DANCE STUDIO</small>
+                                <p>{{team_two.team_studio}}</p>
+                            </div>
+                            <div class="side-wrap-right mb-5">
+                                <p>Red Side</p>
+                            </div>
+                            <div class="crash">
+                                <button type="button" class="btn btn-secondary crash-btn" (click)="crashRight($event)">CRASH</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="marks-wrapper">
+                            <div class="first-section">
+                                <div class="form-group">
+                                    <label for="technique" class="text-center">Technique</label>
+                                    <output name="techniqueResultMob" id="tqResultMob" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="techniqueMob" name="techniqueMob" oninput="tqResultMob.value = techniqueMob.value" formControlName="technique">                                
+                                </div>
+                                <div class="form-group">
+                                    <label for="variety" class="text-center">Variety</label>
+                                    <output name="varietyResultMob" id="vrResultMob" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="varietyMob" oninput="vrResultMob.value = varietyMob.value" formControlName="variety">                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="marks-wrapper">
+                            <div class="first-section">
+                                <div class="form-group">
+                                    <label for="performativity" class="text-center">Performativity</label>
+                                    <output name="performativityResultMob" id="pfResultMob" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="performativityMob" oninput="pfResultMob.value = performativityMob.value" formControlName="performativity">                                
+                                </div>
+                                <div class="form-group">
+                                    <label for="musicality" class="text-center">Musicality</label>
+                                    <output name="musicalityResultMob" id="msResultMob" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="musicalityMob" oninput="msResultMob.value = musicalityMob.value" formControlName="musicality">                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-12 col-md-12">
+                        <div class="marks-wrapper">
+                            <div class="second-section">
+                                <div class="form-group">
+                                    <label for="creativity" class="text-center">Creativity</label>
+                                    <output name="creativityResultMob" id="crResultMob" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="creativityMob" oninput="crResultMob.value = creativityMob.value" formControlName="creativity">                                
+                                </div>
+                                <div class="form-group">
+                                    <label for="personality" class="text-center">Personality</label>
+                                    <output name="personalityResultMob" id="psResultMob" class="text-center mb-2">0</output>
+                                    <input type="range" min="-50" max="50" value="0" step="0.1" class="slider" id="personalityMob" oninput="psResultMob.value = personalityMob.value" formControlName="personality">                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" #successModal tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                </svg>
+            </div>
+            <div class="modal-text">
+                <p> Your data are succesfully saved!</p>
+            </div>         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

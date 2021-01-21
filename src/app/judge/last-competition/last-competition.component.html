@@ -1,0 +1,337 @@
+<nav class="navbar">
+    <a class="navbar-brand" href="#">
+        <img src="./../../../assets/img/WDSF-logo-simplified.png">
+    </a>
+</nav>
+<div *ngFor="let details of arrChoosenComp">
+    <form [formGroup]="addMarksForm" (ngSubmit)="onSubmitMarksForm(addMarksForm)" autocomplete="off" novalidate>
+        <div id="sidebar">
+            <div class="competition">
+                <h6 class="text-center m-0 p-0">{{details.comp_event_name}}</h6>
+            </div>
+            <div class="box-wrapper" >
+                <section class="box">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="label">ADJUCATOR</td>
+                                <td class="label w-8 text-right">ADJUCATIR ID</td>
+                            </tr>
+                            <tr>
+                                <td>{{details.name}} {{details.surname}}</td>
+                                <td class="text-center w-8">{{details.adjucator_sign}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="box">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="label">ROUND</td>
+                                <td class="label text-center w-8">CATEGORY</td>
+                            </tr>
+                            <tr>
+                                <td>{{details.round}}</td>
+                                <td class="text-center w-8">{{details.dance_category}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="box">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="label">STYLE</td>
+                                <td class="label text-center w-8">AGE</td>
+                            </tr>
+                            <tr>
+                                <td>{{details.dance_style}}</td>
+                                <td class="text-center w-8">{{details.age}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="box">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="label">HEAT</td>
+                                <td class="label text-center w-8">TIME LEFT</td>
+                            </tr>
+                            <tr>
+                                <td><span *ngFor="let heat of pickHeat; index as i">{{heat}}</span></td>
+                                <td class="text-center w-8"><countdown #countdown
+                                    [config]="{ leftTime: 90, format: 'mm:ss' }"
+                                ></countdown></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <section class="box">
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="label">COMPONENT</td>
+                            </tr>
+                            <tr>
+                                <td class="xl-font">{{details.component_shortname}}</td>
+                            </tr>
+                            <tr>
+                                <td class="small-font" *ngIf="details.component_shortname === 'TQ'">*Posture and Poise<br>
+                                    *Body line, shape, design<br>
+                                    *Hold or Holds<br>
+                                    *Positions and transitions<br>
+                                    *Balance<br>
+                                    -Static-Dynamic<br>
+                                    -Individual-Couple<br>
+                                    *Coordinaion of movement<br>
+                                    *Actions: General, Style specific<br>
+                                    *Dynamics: Flow, Weight, Time, Space
+                                </td>
+                                <td class="small-font" *ngIf="details.component_shortname === 'MM'">*Music in DanceSport<br>
+                                    *Scientific research on Timing<br>
+                                    *Timing<br>
+                                    *Positions and transitions<br>
+                                    *Bounce Timing<br>
+                                    *Rhythmic Combination<br>
+                                    *Coreography Timing<br>
+                                    *Musical Accents
+                                </td>
+                                <td class="small-font" *ngIf="details.component_shortname === 'PS'">*Lead through connection<br>
+                                    *Shaping<br>
+                                    *Couple Position<br>
+                                    *Lead-Hold-Shaping<br>
+                                    *Rotation<br>
+                                    *Leg Movement Principle<br>
+                                </td>
+                                <td class="small-font" *ngIf="details.component_shortname === 'CP'">*Alignment<br>
+                                    *Common Hip design<br>
+                                    *Step/Action<br>
+                                    *Bounce in relation to the figure being danced<br>
+                                    *Swing Actions<br>
+                                    *Changing the Shape<br>
+                                    *Types of step interpretations<br>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>    
+        </div>
+        <div class="wrapper">
+            <div class="sidebar-mobile">
+                <div class="main-wrap">
+                    <div class="competition">
+                        <h6 class="text-center m-0 p-0">{{details.comp_event_name}}</h6>
+                    </div>
+                </div>
+                <div class="box-container">
+                    <section class="box">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td class="label">ADJUCATOR</td>
+                                    <td class="label w-8 text-right">ADJUCATIR ID</td>
+                                </tr>
+                                <tr>
+                                    <td>{{details.name}} {{details.surname}}</td>
+                                    <td class="text-center w-8">{{details.adjucator_sign}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <section class="box">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td class="label">ROUND</td>
+                                    <td class="label text-center w-8">CATEGORY</td>
+                                </tr>
+                                <tr>
+                                    <td>{{details.round}}</td>
+                                    <td class="text-center w-8">{{details.dance_category}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <section class="box">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td class="label">STYLE</td>
+                                    <td class="label text-center w-8">AGE</td>
+                                </tr>
+                                <tr>
+                                    <td>{{details.dance_style}}</td>
+                                    <td class="text-center w-8">{{details.age}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <section class="box">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td class="label">HEAT</td>
+                                    <td class="label text-center w-8">TIME LEFT</td>
+                                </tr>
+                                <tr>
+                                    <td><span *ngFor="let heat of pickHeat; index as i">{{heat}}</span></td>
+                                    <td class="text-center w-8"><countdown #countdown
+                                        [config]="{ leftTime: 90, format: 'mm:ss' }"
+                                    ></countdown></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    <section class="box component">
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td class="label">COMPONENT</td>
+                                </tr>
+                                <tr>
+                                    <td class="xl-font">{{details.component_shortname}}</td>
+                                </tr>
+                                <tr class="hide-mobile">
+                                    <td class="small-font" *ngIf="details.component_shortname === 'TQ'">*Posture and Poise<br>
+                                        *Body line, shape, design<br>
+                                        *Hold or Holds<br>
+                                        *Positions and transitions<br>
+                                        *Balance<br>
+                                        -Static-Dynamic<br>
+                                        -Individual-Couple<br>
+                                        *Coordinaion of movement<br>
+                                        *Actions: General, Style specific<br>
+                                        *Dynamics: Flow, Weight, Time, Space
+                                    </td>
+                                    <td class="small-font" *ngIf="details.component_shortname === 'MM'">*Music in DanceSport<br>
+                                        *Scientific research on Timing<br>
+                                        *Timing<br>
+                                        *Positions and transitions<br>
+                                        *Bounce Timing<br>
+                                        *Rhythmic Combination<br>
+                                        *Coreography Timing<br>
+                                        *Musical Accents
+                                    </td>
+                                    <td class="small-font" *ngIf="details.component_shortname === 'PS'">*Lead through connection<br>
+                                        *Shaping<br>
+                                        *Couple Position<br>
+                                        *Lead-Hold-Shaping<br>
+                                        *Rotation<br>
+                                        *Leg Movement Principle<br>
+                                    </td>
+                                    <td class="small-font" *ngIf="details.component_shortname === 'CP'">*Alignment<br>
+                                        *Common Hip design<br>
+                                        *Step/Action<br>
+                                        *Bounce in relation to the figure being danced<br>
+                                        *Swing Actions<br>
+                                        *Changing the Shape<br>
+                                        *Types of step interpretations<br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+            <main>
+                <div class="main-wrap">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <caption><small>*Allowed marks from 0.5 to 10, with the ability to using the half mark</small></caption>
+                            <thead *ngIf="details.dance_style === 'Ten dance'">
+                                <tr>
+                                    <th scope="col" class="text-center">Couples ID</th>
+                                    <th scope="col" class="text-center" *ngFor="let dance of dances">{{dance.last_dance_shortname}}</th>
+                                </tr>
+                            </thead>
+                            <thead *ngIf="details.dance_style === 'Latin'">
+                                <tr>
+                                    <th scope="col" class="text-center">Couples ID</th>
+                                    <th scope="col" class="text-center" *ngFor="let dance of dances | slice:0:4">{{dance.last_dance_shortname}}</th>
+                                </tr>
+                            </thead>
+                            <thead *ngIf="details.dance_style === 'Standard'">
+                                <tr>
+                                    <th scope="col" class="text-center">Couples ID</th>
+                                    <th scope="col" class="text-center" *ngFor="let dance of dances | slice:5:10">{{dance.last_dance_shortname}}</th>
+                                </tr>
+                            </thead>
+                            <ng-container *ngIf="details.dance_style === 'Ten dance'">
+                                <tbody formArrayName="couples">
+                                    <tr [formGroupName]="i" *ngFor="let mark of getControl(addMarksForm); let i = index">
+                                        <td scope="row" class="text-center">{{mark.value.c_id}}</td>
+                                        <ng-container formArrayName="points">
+                                            <td [formGroupName]="j" class="text-center" *ngFor="let mark of getPoints(mark); let j = index">
+                                                <input type="number" formControlName="mark" step="0.5">
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </ng-container>
+                            <ng-container *ngIf="details.dance_style === 'Latin'">
+                                <tbody formArrayName="couples">
+                                    <tr [formGroupName]="i" *ngFor="let mark of getControl(addMarksForm); let i = index">
+                                        <td scope="row" class="text-center">{{mark.value.c_id}}</td>
+                                        <ng-container formArrayName="points">
+                                            <td [formGroupName]="j" class="text-center" *ngFor="let mark of getPoints(mark); let j = index">
+                                                <input type="number" formControlName="mark" step="0.5">
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </tbody>
+                            </ng-container>
+                            <ng-container *ngIf="details.dance_style === 'Standard'">
+                                <tbody formArrayName="couples">
+                                    <tr [formGroupName]="i" *ngFor="let mark of getControl(addMarksForm); let i = index">                                        
+                                        <td scope="row" class="text-center">{{mark.value.c_id}}</td>
+                                        <ng-container formArrayName="points">
+                                            <td [formGroupName]="j" class="text-center" *ngFor="let mark of getPoints(mark); let j = index">
+                                                <input type="number" formControlName="mark" step="0.5" minlength="2">
+                                            </td>
+                                        </ng-container>
+                                    </tr>                       
+                                </tbody>
+                            </ng-container>
+                        </table>
+                        <div class="row justify-content-end">
+                            <div class="col-md-2">
+                                <button type="submit" class="btn submit-btn mb-2">Confirm</button>
+                            </div>
+                        </div>
+                        <div class="form-invalid" *ngIf="marksFormInvalid">
+                            <small class="is-invalid">You have to fill in all input fields.</small>
+                        </div>
+                        <!-- {{this.addMarksForm.value | json}} --> 
+                    </div>                  
+                </div>
+            </main>
+        </div>
+    </form>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modal" #successModal tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                    <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                </svg>
+            </div>
+            <div class="modal-text">
+                <p> Your data are succesfully saved!</p>
+            </div>         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-close" data-dismiss="modal" (click)="closeModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+

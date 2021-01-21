@@ -1,0 +1,79 @@
+<div class="card">
+    <div class="card-header">
+        <h1>Insert Adjucator</h1>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="addUrbanAdjucatorForm" (ngSubmit)="onSubmitUrbanAdjForm(addUrbanAdjucatorForm.value)" autocomplete="off" novalidate>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="gentleman-name">Adjucator Name</label>
+                    <input type="text" formControlName="adjUName" class="form-control form-control-sm" id="gentleman-name">
+                </div>
+                    <div class="form-group col-md-6">
+                    <label for="lady-name">Adjucator Surname</label>
+                    <input type="text" formControlName="adjUSurname" class="form-control form-control-sm" id="lady-name">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="gentleman-surname">Username</label>
+                    <input type="text" formControlName="adjUUsername" class="form-control form-control-sm" id="gentleman-surname">
+                </div>                               
+                <div class="form-group col-md-6">
+                    <label for="lady-surname">Password</label>
+                    <input type="text" formControlName="adjUPassword" class="form-control form-control-sm" id="lady-surname">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="dance-studio">Dance Studio</label>
+                    <input type="text" formControlName="adjUDanceStudio" class="form-control form-control-sm" id="dance-studio">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="dance-studio">Country</label>
+                    <input type="text" formControlName="adjUCountry" class="form-control form-control-sm" id="dance-studio">
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="flag_dance-category">Occupation</label>
+                    <select formControlName="adjUOccupation" class="form-control form-control-sm" id="flag_dance-category" disabled>
+                        <option value="3">Urban Dances</option>
+                    </select>
+                </div>                                
+            </div>
+            <div class="button">
+                <button type="button" class="btn btn-primary preview" (click)="getAdjucators(); showTable=true">Preview</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            <ng-container *ngIf="showTable">
+                <div class="table-responsive custom-table mb-5">
+                    <table class="table">
+                        <thead class="custom-header">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Surname</th>                      
+                                <th scope="col">Dance Studio</th>
+                                <th scope="col">Country</th>                       
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let adj of adjucators | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index ">
+                                <td>{{i+1}}</td>
+                                <td>{{adj.name}}</td>
+                                <td>{{adj.surname}}</td>
+                                <td>{{adj.dance_studio}}</td>
+                                <td>{{adj.country}}</td>
+                            </tr>                      
+                        </tbody>
+                    </table>
+                </div>
+                <pagination-controls (pageChange)="page = $event" id="1"
+                    maxSize="5"
+                    directionLinks="true"
+                    autoHide="true"
+                    previousLabel="Previous"
+                    nextLabel="Next"
+                    screenReaderPaginationLabel="Pagination"
+                    screenReaderPageLabel="page"
+                    screenReaderCurrentLabel="You're on page">
+                </pagination-controls>
+            </ng-container>                               
+        </form>
+    </div>                        
+</div>

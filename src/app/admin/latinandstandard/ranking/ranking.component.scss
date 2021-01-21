@@ -1,0 +1,107 @@
+$blue: rgba(28,30,69, 0.98);
+$darkblue: #171941;
+$gray: rgba(255,255,255,.5);
+$hotpink: #fd5d93;
+$pink: rgb(214,0,89);
+$violet: #a42b85;
+$white: #fff;
+$black: rgba(0,0,0,.1);
+$blueSecond: #2b3553;
+
+.card {
+    position: relative;
+    background: transparent;
+    border: none;
+    .card-header {
+        position: absolute;
+        top: -20px;
+        left: -20px;
+        width: 350px;
+        background: linear-gradient(to bottom left, $hotpink, $pink, $violet);
+        border-radius: 0 0 80px 0;
+        h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        @media(max-width: 768px) {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            width: 280px;
+            h1 {
+                font-size: 16px; 
+            }
+        }
+    }
+    .card-body {
+        padding-top: 80px;
+        .form-group {
+            label {
+                font-size: 12px;
+            }
+            input, 
+            select {
+                color: rgba(255,255,255,.8);
+                border: 1px solid $blueSecond;
+                background-color: transparent;
+                font-size: 12px;
+                &:focus {
+                    box-shadow: none;
+                    border-color: $pink;
+                    color: $pink;
+                }
+                &:disabled {
+                    color: #9a9a9a;
+                    opacity: .5;
+                    cursor: not-allowed; 
+                }
+            }
+            @media(max-width: 567px) {
+                margin-bottom: 10px;
+            }
+        }
+        .button {
+            display: flex;
+            justify-content: flex-end;
+            .btn {
+                padding: 10px 35px;
+                font-size: 14px;
+                background: linear-gradient(to bottom left,$hotpink,$pink,$violet);
+                border: none;
+            }
+            @media(max-width: 567px) {
+                margin-top: 20px;
+                flex-direction: column;
+            }
+        }
+
+        .custom-table{
+            margin-top: 60px;
+        }
+        .custom-header {
+            tr{
+                th{
+                    color: white;
+                    font-size: 12px;
+                    font-weight: 300;
+                    text-align: center;
+                    border-bottom: 1px solid $gray;
+                    border-top: none;
+                }
+            }
+        }
+        tbody {
+            tr{
+                td{
+                    color: white;
+                    font-size: 14px;
+                    font-weight: 300;
+                    text-align: center;
+                    border-bottom: 1px solid $gray;
+                }
+            }
+        }
+        @media(max-width: 567px) {
+            padding: 35px 0;
+        }
+    }
+}

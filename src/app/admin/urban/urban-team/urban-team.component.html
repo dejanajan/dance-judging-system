@@ -1,0 +1,83 @@
+<div class="card">
+    <div class="card-header">
+        <h1>Insert Dance Team</h1>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="addTeamForm" (ngSubmit)="onSubmitTeamForm(addTeamForm.value)" autocomplete="off" novalidate id="urban-team-table">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="team-name">Team Name</label>
+                    <input type="text" class="form-control form-control-sm" id="team-name" formControlName="teamName">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="dance-studio">Dance Studio</label>
+                    <input type="text" class="form-control form-control-sm" id="dance-studio" formControlName="danceStudio">
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="age-group">Age Group</label>
+                    <select class="form-control form-control-sm" id="age-group" formControlName="teamAge">
+                        <option *ngFor="let group of ageGroup" [value]="group.urban_age_group_id">{{group.urban_age_name}}</option>
+                    </select>
+                </div>                                   
+                <div class="form-group col-md-2">
+                    <label for="dance-style">Dance Style</label>
+                    <select class="form-control form-control-sm" id="dance-style" disabled formControlName="teamStyle">
+                        <option *ngFor="let style of danceStyleOther" [value]="style.urban_dance_style_id" [selected]="1">{{style.urban_ds_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="dance-category">Dance Category</label>
+                    <select class="form-control form-control-sm" id="dance-category" formControlName="teamCategory">
+                        <option *ngFor="let category of danceCategoryOther" [value]="category.urban_dc_id">{{category.urban_dc_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="team-id">Team ID</label>
+                    <input type="text" class="form-control form-control-sm" id="team-id" formControlName="teamId">
+                </div>
+            </div>
+            <div class="button">
+                <button type="button" class="btn btn-primary preview" (click)="getTeams(addTeamForm.value); showTable=true">Preview</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+            <ng-container *ngIf="showTable">
+                <div class="table-responsive custom-table mb-5">
+                    <table class="table">
+                        <thead class="custom-header">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">TeamID</th>
+                                <th scope="col">Team Name</th>                    
+                                <th scope="col">Dance Studio</th>
+                                <th scope="col">Style</th>
+                                <th scope="col">Category</th>
+                                <th scope="col">Age Group</th>                          
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let team of teams | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index ">
+                                <td>{{i+1}}</td>
+                                <td>{{team.team_id}}</td>
+                                <td>{{team.team_name}}</td>
+                                <td>{{team.team_studio}}</td>
+                                <td>{{team.dance_style}}</td>
+                                <td>{{team.dance_category}}</td>
+                                <td>{{team.age}}</td>
+                            </tr>                      
+                        </tbody>
+                    </table>
+                </div>
+                <pagination-controls (pageChange)="page = $event" id="1"
+                    maxSize="5"
+                    directionLinks="true"
+                    autoHide="true"
+                    previousLabel="Previous"
+                    nextLabel="Next"
+                    screenReaderPaginationLabel="Pagination"
+                    screenReaderPageLabel="page"
+                    screenReaderCurrentLabel="You're on page">
+                </pagination-controls>
+            </ng-container>                                
+        </form>
+    </div>                        
+</div>

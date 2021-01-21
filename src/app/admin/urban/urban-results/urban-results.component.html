@@ -1,0 +1,80 @@
+<div class="card">
+    <div class="card-header">
+        <h1>Select Criteria</h1>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="resultsUrbanForm" (ngSubmit)="onSubmitResultsUrbanForm(resultsUrbanForm.value)" autocomplete="off" novalidate id="results-form-urban">
+            <div class="form-row">
+                <div class="form-group col-md-3">
+                    <label for="dance-style">Dance Style</label>
+                    <select class="form-control form-control-sm" id="dance-style" disabled formControlName="danceStyle">
+                        <option *ngFor="let style of danceStyleOther" [value]="style.urban_dance_style_id" [selected]="1">{{style.urban_ds_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="age-group">Age Group</label>
+                    <select class="form-control form-control-sm" id="age-group" formControlName="ageGroup">
+                        <option *ngFor="let group of ageGroup" [value]="group.urban_age_group_id">{{group.urban_age_name}}</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="dance-category">Dance Category</label>
+                    <select class="form-control form-control-sm" id="dance-category" formControlName="danceCategory">
+                        <option *ngFor="let category of danceCategoryOther" [value]="category.urban_dc_id">{{category.urban_dc_name}}</option>
+                    </select>
+                </div>                                   
+                <div class="form-group col-md-3">
+                    <label for="dance-round">Round</label>
+                    <select class="form-control form-control-sm" id="dance-round" formControlName="danceRound">
+                        <option *ngFor="let heat of heats" [value]="heat.heat_id">{{heat.heat_name}}</option>
+                    </select>
+                </div>
+             </div>
+            <div class="button">
+                <button type="submit" class="btn btn-primary preview" (click)="showTable=true">Submit</button>
+                <button type="button" class="btn btn-calculate" (click)="calculateRanking(resultsUrbanForm.value); error=false">Calculate</button>
+            </div>
+            <small class="alert-error" *ngIf="error">The score for these parameters is already calculated.</small>
+            <ng-container *ngIf="showTable">
+                <div class="table-responsive custom-table mb-5">
+                    <table class="table">
+                        <thead class="custom-header">
+                            <tr>
+                                <th scope="col">ID</th>
+                                <th scope="col">Team ID</th>
+                                <th scope="col">Age Group</th>                         
+                                <th scope="col">Category</th>
+                                <th scope="col">Style</th>
+                                <th scope="col">Round</th>
+                                <th scope="col">Adjucator Sign</th>
+                                <th scope="col">Mark</th>                            
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mark of result | paginate: {itemsPerPage: 5, currentPage:page, id: '1'}; let i = index ">
+                                <td>{{i+1}}</td>
+                                <td>{{mark.team_id}}</td>
+                                <td>{{mark.urban_age_name}}</td>
+                                <td>{{mark.urban_dc_name}}</td>
+                                <td>{{mark.urban_ds_name}}</td>
+                                <td>{{mark.heat_name}}</td>
+                                <td>{{mark.adj_sign_name}}</td>
+                                <td>{{mark.mark}}</td>
+                            </tr>                      
+                        </tbody>
+                    </table>
+                </div>
+                <pagination-controls (pageChange)="page = $event" id="1"
+                    maxSize="5"
+                    directionLinks="true"
+                    autoHide="true"
+                    previousLabel="Previous"
+                    nextLabel="Next"
+                    screenReaderPaginationLabel="Pagination"
+                    screenReaderPageLabel="page"
+                    screenReaderCurrentLabel="You're on page">
+                </pagination-controls>
+            </ng-container>                             
+        </form>
+    </div>                        
+</div>
